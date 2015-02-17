@@ -1,7 +1,7 @@
 <div class="container">
   <% if session[:user_id] %>
-  <h1>Welcome User <%=@user.username%></h1>
+  <h1>Welcome <%=@user.username%></h1>
   <% else %>
-  <h1>This area is public, you need to log in</h1>
+  <h1>Welcome to Frack Jack.. Please sign in or <a href="/users/new">register</a></h1>
   <% end %>
 </div>

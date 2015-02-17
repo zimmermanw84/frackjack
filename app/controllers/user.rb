@@ -43,7 +43,6 @@ post '/sessions' do
 end
 
 get '/logout' do
-  session[:user_id] = nil
-  redirect '/'
+  session_logout_and_redirect
 end
 
