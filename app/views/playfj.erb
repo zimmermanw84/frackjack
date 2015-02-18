@@ -1,5 +1,30 @@
 <div class="container">
   <% if session[:user_id] %>
   <h1>Welcome to Frack Jack <%=@user.username%></h1>
+
+  <h1>Dealer Hand</h1>
+  <% if @game %>
+  <% @game.dealer_hand.each do |card| %>
+  <p><%= card.value %> of <%= card.suit %>s </p>
+  <% end %>
+
+  <h1><%=@user.username%>'s Hand</h1>
+  <% @game.player_hand.each do |card| %>
+  <p><%= card.value %> of <%= card.suit %>s </p>
+  <% end %>
+
+  <form action="/<%= @user.id %>/playfj/hit" method="post">
+    <input type="submit" value="Hit!">
+  </form>
+
+  <h2>Card Count: <%= @game.deck.count %></h2>
+  <h2>Score: <%= @game.score %></h2>
+
+  <% else %>
+  <form action="/<%= @user.id %>/playfj/" method="post">
+    <input type="submit" value="Deal!">
+  </form>
+  <% end %>
+
   <% end %>
 </div>
