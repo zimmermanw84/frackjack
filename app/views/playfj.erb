@@ -13,7 +13,8 @@
   <p><%= card.value %> of <%= card.suit %>s </p>
   <% end %>
 
-  <form action="/<%= @user.id %>/playfj/hit" method="post">
+  <form action="/<%= @user.id %>/playfj" method="post">
+    <input type="hidden" name="game" value="<%= @game %>">
     <input type="submit" value="Hit!">
   </form>
 
@@ -21,7 +22,7 @@
   <h2>Score: <%= @game.score %></h2>
 
   <% else %>
-  <form action="/<%= @user.id %>/playfj/" method="post">
+  <form action="/<%= @user.id %>/playfj" method="post">
     <input type="submit" value="Deal!">
   </form>
   <% end %>

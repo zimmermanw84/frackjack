@@ -28,4 +28,8 @@ class Game < ActiveRecord::Base
     hand << @deck.to_a.pop
   end
 
+  def delt?
+    @deck.length < 52 ? true : false
+  end
+
 end

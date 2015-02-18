@@ -6,19 +6,21 @@ get '/:user_id/playfj' do
   erb :playfj
 end
 
-post '/:user_id/playfj/' do
+post '/:user_id/playfj' do
   @user = User.find(params[:user_id])
   @game = @user.games.create(score: 2000)
-  session[:game] = @game
   @game.deal
+
+  @game.hit!(@game.player_hand) if @game.delt?
 
   erb :playfj
 end
 
+# <<<<< Work Bookmark form also
 post '/:user_id/playfj/hit' do
-  p user = User.find(params[:user_id])
-  p game = session[:game]
-  # game.hit(game.player_hand)
+  user = User.find(params[:user_id])
+  @game = params[:game]
+  @game.hit!(@game.player_hand)
 
-  # erb :playfj
+  erb :playfj
 end
