@@ -38,4 +38,30 @@ helpers do
     halt 400, "Go away stranger!!"
   end
 
+  def set_session_game_tracker(game)
+    session[:game_id] = game.id
+    # session[:player_hand] = game.player_hand
+    # session[:dealer_hand] = game.dealer_hand
+    # session[:score] = game.score
+  end
+
+  def update_game_session_tracker(game)
+    game.player_hand = session[:player_hand]
+    game.dealer_hand = session[:dealer_hand]
+    game.score = session[:score]
+  end
+
+  def clear_session_game
+    session.delete :game_id
+    session.delete :player_hand
+    session.delete :dealer_hand
+    session.delete :score
+  end
+
+  def usable_cards
+    used_cards = session[:player_hand] + session[:dealer_hand]
+
+    Card.all - used_cards
+  end
+
 end

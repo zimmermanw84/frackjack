@@ -1,35 +1,45 @@
 class Game < ActiveRecord::Base
   # Remember to create a migration!
-  attr_reader :dealer_hand, :player_hand, :deck
+  attr_accessor :deck
 
-  def initialize(args={})
-    super
-    @deck = Card.all
-    @muck = []
-    @player_hand = []
-    @dealer_hand = []
-    shuffle!
-    # deal
-  end
+  belongs_to :user
+
+  has_many :decks
+  has_many :cards, through: :decks
+
 
   def shuffle!
-    @deck = @muck + @deck
-    @deck = @deck.shuffle
+  #   # @deck = @muck + @deck
+    @deck = self.decks.first.cards.to_a.shuffle
   end
 
-  def deal
-    @player_hand << @deck.to_a.pop
-    @dealer_hand << @deck.to_a.pop
-    @player_hand << @deck.to_a.pop
-    @dealer_hand << @deck.to_a.pop
+
+  def set_player_hand
+    @player_hand.each do |card|
+      card.player_hand = true
+      card.save
+    end
   end
 
-  def hit!(hand)
-    hand << @deck.to_a.pop
+  def set_dealer_hand
+    @dealer_hand.each do |card|
+      card.dealer_hand = true
+      card.save
+    end
   end
 
-  def delt?
-    @deck.length < 52 ? true : false
+  def hit_player!
+    @player_hand << @deck.pop
+    set_player_hand
   end
+
+  def hit_dealer!
+    @dealer_hand << @deck.pop
+    set_dealer_hand
+  end
+
+  # def delt?
+  #   @deck.length < 52 ? true : false
+  # end
 
 end

@@ -43,6 +43,8 @@ post '/sessions' do
 end
 
 get '/logout' do
+  reset_cards
+  clear_session_game
   session_logout_and_redirect
 end
 

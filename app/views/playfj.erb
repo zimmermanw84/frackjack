@@ -2,23 +2,28 @@
   <% if session[:user_id] %>
   <h1>Welcome to Frack Jack <%=@user.username%></h1>
 
-  <h1>Dealer Hand</h1>
   <% if @game %>
-  <% @game.dealer_hand.each do |card| %>
+  <h1>Dealer Hand</h1>
+  <h2>Dealer shows: <%= dealer_hand[1].value %> of <%= dealer_hand[1].suit %>s</h2>
+  <% dealer_hand[1..-1].each do |card| %>
   <p><%= card.value %> of <%= card.suit %>s </p>
   <% end %>
 
   <h1><%=@user.username%>'s Hand</h1>
-  <% @game.player_hand.each do |card| %>
+  <h2>Your value: <%= player_hand_value %></h2>
+  <% player_hand.each do |card| %>
   <p><%= card.value %> of <%= card.suit %>s </p>
   <% end %>
 
-  <form action="/<%= @user.id %>/playfj" method="post">
-    <input type="hidden" name="game" value="<%= @game %>">
+  <form action="/<%= @user.id %>/playfj/hit" method="post">
     <input type="submit" value="Hit!">
   </form>
 
-  <h2>Card Count: <%= @game.deck.count %></h2>
+  <form action="/<%= @user.id %>/playfj/stay" method="post">
+    <input type="submit" value="Stay!">
+  </form>
+
+  <h2>Card Count: <%= card_count %></h2>
   <h2>Score: <%= @game.score %></h2>
 
   <% else %>
