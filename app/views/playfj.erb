@@ -2,34 +2,49 @@
   <% if session[:user_id] %>
   <h1>Welcome to Frack Jack <%=@user.username%></h1>
 
-  <% if @game %>
+  <% if session[:game_id] %>
   <h1>Dealer Hand</h1>
-  <h2>Dealer shows: <%= dealer_hand[1].value %> of <%= dealer_hand[1].suit %>s</h2>
+  <h2>Dealer shows: <%= dealer_hand[1].name %></h2>
   <% dealer_hand[1..-1].each do |card| %>
-  <p><%= card.value %> of <%= card.suit %>s </p>
+  <p><%= card.name %></p>
   <% end %>
 
   <h1><%=@user.username%>'s Hand</h1>
   <h2>Your value: <%= player_hand_value %></h2>
   <% player_hand.each do |card| %>
-  <p><%= card.value %> of <%= card.suit %>s </p>
+  <p><%= card.name %></p>
   <% end %>
-
-  <form action="/<%= @user.id %>/playfj/hit" method="post">
-    <input type="submit" value="Hit!">
-  </form>
 
   <form action="/<%= @user.id %>/playfj/stay" method="post">
     <input type="submit" value="Stay!">
   </form>
 
+  <% if player_hand_value.is_a?(String) || player_hand_value < 17 %>
+
+  <form action="/<%= @user.id %>/playfj/hit" method="post">
+    <input type="submit" value="Hit!">
+  </form>
+
+  <% end %>
+
   <h2>Card Count: <%= card_count %></h2>
   <h2>Score: <%= @game.score %></h2>
-
+  <h2>Actions Left: <%= @game.action_counter %></h2>
   <% else %>
   <form action="/<%= @user.id %>/playfj" method="post">
     <input type="submit" value="Deal!">
   </form>
+
+
+  <% end %>
+  <% if @winner %>
+  <h1><%= @winner %></h1>
+  <h2>You: <%= player_hand_value %></h2>
+  <h2>Dealer: <%= dealer_hand_value %></h2>
+  <form action="/<%= @user.id %>/playfj" method="post">
+    <input type="submit" value="Next!">
+  </form>
+
   <% end %>
 
   <% end %>

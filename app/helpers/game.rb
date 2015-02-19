@@ -57,47 +57,65 @@ helpers do
 
   def player_hand_value
     v = 0
-    player_hand.each do |card|
-      if card.value == "K"
-        v += 10
-      elsif card.value == "Q"
-        v += 10
-      elsif card.value == "J"
-        v += 10
-      elsif card.value == "A"
-        v += 11
-      else
-        v += card.value.to_i
-      end
-    end
-    v
+    player_hand.each { |card| v += card.value }
+    v > 21 ? "Bust!" : v
   end
 
   def dealer_hand_value
     v = 0
-    dealer_hand.each do |card|
-      if card.value == "K" || card.value == "Q" || card.value == "J"
-        v += 10
-      elsif card.value == "A"
-        v += 11
-      else
-        v += card.value.to_i
-      end
+    dealer_hand.each { |card| v += card.value }
+
+    if v > 21 && player_hand_value.is_a?(String)
+      v
+    elsif v > 21
+      "Bust!"
+    else
+      v
     end
-    v
-  end
-
-
-  def blackjack?
 
   end
 
-  def dealer_action
+  def player_blackjack?
+    player_hand_value == 21 ? true : false
+  end
 
+  def dealer_blackjack?
+    dealer_hand_value == 21 ? true : false
   end
 
   def declare_winner
 
+    return "Dealer wins" if player_hand_value.is_a?(String)
+
+    return "Player wins" if dealer_hand_value.is_a?(String)
+
+    return "Push" if dealer_hand_value ==player_hand_value
+
+    dealer_hand_value > player_hand_value ? "Dealer wins" : "Player wins"
+  end
+
+  def use_action
+    @game.action_counter -= 1
+    @game.save
+  end
+
+  def dealer_action
+
+    until dealer_hand_value == "Bust!"
+      break if dealer_hand_value > 17
+      deck = @game.decks.first.cards.where(player_hand: false, dealer_hand: false)
+      card = deck.to_a.shuffle.pop
+      card.dealer_hand = true
+      card.save
+    end
+  end
+
+  def game_over?
+    if @game.action_counter <= 0 || @game.score <= 0
+      true
+    else
+      false
+    end
   end
 
 end

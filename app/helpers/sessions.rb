@@ -38,8 +38,9 @@ helpers do
     halt 400, "Go away stranger!!"
   end
 
-  def set_session_game_tracker(game)
+  def set_session_game_tracker(game, user)
     session[:game_id] = game.id
+    session[:user_id] = user.id
     # session[:player_hand] = game.player_hand
     # session[:dealer_hand] = game.dealer_hand
     # session[:score] = game.score
@@ -53,8 +54,9 @@ helpers do
 
   def clear_session_game
     session.delete :game_id
-    session.delete :player_hand
-    session.delete :dealer_hand
+    # session.delete :user_id
+    # session.delete :player_hand
+    # session.delete :dealer_hand
     session.delete :score
   end
 

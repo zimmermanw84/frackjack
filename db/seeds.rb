@@ -14,6 +14,17 @@ d.save
 
 suits.each do |suit|
   cards.each do |card|
-    d.cards.create(suit: suit, value: card, img_url: "test")
+
+    if card == "K"
+      d.cards.create(name: "#{card} of #{suit}", value: 10, img_url: "test")
+    elsif card == "Q"
+      d.cards.create(name: "#{card} of #{suit}", value: 10, img_url: "test")
+    elsif card == "J"
+      d.cards.create(name: "#{card} of #{suit}", value: 10, img_url: "test")
+    elsif card == "A"
+      d.cards.create(name: "#{card} of #{suit}", value: 11, img_url: "test")
+    else
+      d.cards.create(name: "#{card} of #{suit}", value: card, img_url: "test")
+    end
   end
 end
