@@ -2,26 +2,30 @@ before '/:user_id/playfj' do
   redirect '/' if session_logged_in? == false
 end
 
-# after '/:user_id/playfj' do
-#   @user = User.find(params[:user_id])
-#   @game = @user.games.find(session[:game_id])
-#   redirect '/:user_id/playfj/gameover' if game_over?
-# end
 
 get '/:user_id/playfj' do
   @user = User.find(params[:user_id])
+  if session[:game_id]
+    @game = @user.games.find(session[:game_id])
+
+  else
+    @game = @user.games.create
+    set_session_game_tracker(@game)
+  end
+
   erb :playfj
 end
-
 
 get '/:user_id/playfj/reset' do
   @user = User.find(params[:user_id])
   @game = @user.games.find(session[:game_id])
+  @game.save
   reset_cards
   clear_session_game
 
   erb :playfj
 end
+
 
 post '/:user_id/playfj' do
   @user = User.find(params[:user_id])
@@ -31,26 +35,37 @@ post '/:user_id/playfj' do
     reset_cards
   else
     @game = @user.games.create
+    set_session_game_tracker(@game)
   end
 
   load_decks
   select_player_dealer_hand
-  set_session_game_tracker(@game)
+
 
   erb :playfj
 end
 
-# get '/:user_id/playfj/gameover' do
+post '/:user_id/playfj/make_wager' do
+  @user = User.find(params[:user_id])
+  @game = @user.games.find(session[:game_id])
+  session[:bet] = params[:bet]
+  @wager_made = true
+  erb :playfj
+end
 
-#   @user = User.find(session[:user_id])
-#   Game.find(session[:game_id])
+post '/:user_id/playfj/next' do
+  @user = User.find(params[:user_id])
+  @game = @user.games.find(session[:game_id])
+  use_action
+  reset_cards
 
-#   erb :gameover
-# end
+  erb :playfj
+end
 
 post '/:user_id/playfj/hit' do
   @user = User.find(session[:user_id])
   @game = @user.games.find(session[:game_id])
+  @wager_made = true
   hit_player_hand
 
 
@@ -60,9 +75,12 @@ end
 post '/:user_id/playfj/stay' do
   @user = User.find(params[:user_id])
   @game = @user.games.find(session[:game_id])
+  @wager_made = true
+  @hand_over = true
   dealer_action
   @winner = declare_winner
   use_action
+  settle_bets
 
   erb :playfj
 end

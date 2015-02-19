@@ -118,4 +118,16 @@ helpers do
     end
   end
 
+  def settle_bets
+
+    if @winner == "Player wins"
+      @game.score += session[:bet].to_i
+      @game.save
+    elsif @winner == "Dealer wins"
+      @game.score -= session[:bet].to_i
+      @game.save
+    end
+    session.delete :bet
+  end
+
 end

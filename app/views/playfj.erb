@@ -2,7 +2,15 @@
   <% if session[:user_id] %>
   <h1>Welcome to Frack Jack <%=@user.username%></h1>
 
-  <% if session[:game_id] %>
+  <% if session[:game_id] && !@hand_over && !@wager_made %>
+  <form action="/<%= @user.id %>/playfj/make_wager" method="post">
+    <p>Total Bankroll: <%= @game.score %></p>
+    <p>Enter number amout to Wager!</p>
+    <input type="text" name="bet" placeholder="GAMBLE!" required>
+    <input type="submit" value="Bet!">
+  </form>
+
+  <% elsif session[:game_id] && @wager_made%>
   <h1>Dealer Hand</h1>
   <h2>Dealer shows: <%= dealer_hand[1].name %></h2>
   <% dealer_hand[1..-1].each do |card| %>
@@ -15,36 +23,53 @@
   <p><%= card.name %></p>
   <% end %>
 
-  <form action="/<%= @user.id %>/playfj/stay" method="post">
-    <input type="submit" value="Stay!">
-  </form>
 
-  <% if player_hand_value.is_a?(String) || player_hand_value < 17 %>
 
+  <% if !@hand_over && @wager_made %>
   <form action="/<%= @user.id %>/playfj/hit" method="post">
     <input type="submit" value="Hit!">
   </form>
 
+  <form action="/<%= @user.id %>/playfj/stay" method="post">
+    <input type="submit" value="Stay!">
+  </form>
+
+  <% elsif @hand_over && !game_over?%>
+  <h2>You: <%= player_hand_value %></h2>
+  <h2>Dealer: <%= dealer_hand_value %></h2>
+  <% if @winner %>
+  <% settle_bets %>
+  <h2>The winner is! <%= @winner %></h2>
   <% end %>
+  <form action="/<%= @user.id %>/playfj" method="post">
+    <input type="submit" value="Next Hand!">
+  </form>
+
+  <% elsif @hand_over && game_over?%>
+  <h1><%= @winner %></h1>
+  <h2>You: <%= player_hand_value %></h2>
+  <h2>Dealer: <%= dealer_hand_value %></h2>
+  <form action="/<%= @user.id %>/playfj/reset" method="get">
+    <input type="submit" value="Restart!">
+  </form>
+
+  <form action="/<%= @user.id %>/highrollers" method="get">
+    <input type="submit" value="Highrollers!">
+  </form>
+
+  <% end %>
+
 
   <h2>Card Count: <%= card_count %></h2>
   <h2>Score: <%= @game.score %></h2>
   <h2>Actions Left: <%= @game.action_counter %></h2>
+
+
   <% else %>
+
   <form action="/<%= @user.id %>/playfj" method="post">
     <input type="submit" value="Deal!">
   </form>
-
-
-  <% end %>
-  <% if @winner %>
-  <h1><%= @winner %></h1>
-  <h2>You: <%= player_hand_value %></h2>
-  <h2>Dealer: <%= dealer_hand_value %></h2>
-  <form action="/<%= @user.id %>/playfj" method="post">
-    <input type="submit" value="Next!">
-  </form>
-
   <% end %>
 
   <% end %>

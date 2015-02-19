@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>High Rollers!</h1>
+
+  <% if @games %>
+  <% @games.each do |game| %>
+  <ul>
+    <% user = User.find(game.user_id) %>
+    <li>Score:<%= game.score %> Player: <%= user.username %></li>
+  </ul>
+  <% end %>
+  <% end %>
+</div>
