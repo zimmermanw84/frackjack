@@ -5,7 +5,7 @@
   <% @games.each do |game| %>
   <ul>
     <% user = User.find(game.user_id) %>
-    <li>Score:<%= game.score %> Player: <%= user.username %></li>
+    <li>Bank Roll:$<%= game.score %> Player: <%= user.username %></li>
   </ul>
   <% end %>
   <% end %>

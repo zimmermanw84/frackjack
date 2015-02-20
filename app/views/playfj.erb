@@ -4,8 +4,8 @@
 
   <% if session[:game_id] && !@hand_over && !@wager_made %>
   <form action="/<%= @user.id %>/playfj/make_wager" method="post">
-    <p>Total Bankroll: <%= @game.score %></p>
-    <p>Enter number amout to Wager!</p>
+    <p>Total Bankroll: $<%= @game.score %></p>
+    <p>No gamble no future!</p>
     <input type="text" name="bet" placeholder="GAMBLE!" required>
     <input type="submit" value="Bet!">
   </form>
@@ -61,7 +61,7 @@
 
 
   <h2>Card Count: <%= card_count %></h2>
-  <h2>Score: <%= @game.score %></h2>
+  <h2>Bank Roll: $<%= @game.score %></h2>
   <h2>Actions Left: <%= @game.action_counter %></h2>
 
 

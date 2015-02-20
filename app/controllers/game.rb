@@ -5,13 +5,7 @@ end
 
 get '/:user_id/playfj' do
   @user = User.find(params[:user_id])
-  if session[:game_id]
-    @game = @user.games.find(session[:game_id])
-
-  else
-    @game = @user.games.create
-    set_session_game_tracker(@game)
-  end
+  @game = @user.games.find(session[:game_id])
 
   erb :playfj
 end
@@ -19,7 +13,6 @@ end
 get '/:user_id/playfj/reset' do
   @user = User.find(params[:user_id])
   @game = @user.games.find(session[:game_id])
-  @game.save
   reset_cards
   clear_session_game
 
@@ -38,16 +31,14 @@ post '/:user_id/playfj' do
     set_session_game_tracker(@game)
   end
 
-  load_decks
-  select_player_dealer_hand
-
-
   erb :playfj
 end
 
 post '/:user_id/playfj/make_wager' do
   @user = User.find(params[:user_id])
   @game = @user.games.find(session[:game_id])
+  load_decks
+  select_player_dealer_hand
   session[:bet] = params[:bet]
   @wager_made = true
   erb :playfj
