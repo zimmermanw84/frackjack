@@ -1,19 +1,133 @@
-/*body { padding-top: 70px; }*/
+body  {
+  background-image: url('/images/pool_table.png')
+}
 
-li {
+
+/* login form - nav bar*/
+
+nav {
+  margin-top: 0;
+  background-color: black;
+  max-height: 4em;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+nav header {
+  color: red;
+  position: relative;
+  margin-top: -0.2em;
+  margin-left: 0.5em;
+  font-size: 3em;
   display: inline-block;
-  /*float: right;*/
 }
 
-img {
-  max-height: 20em;
-  max-width: 20em;
+#logged-in {
+  position: relative;
+  margin-right: 1cm;
+  float: right;
+}
+
+#logged-in a {
+  color: green;
+}
+
+#logged-in a:hover {
+  color: red;
 }
 
 
+.login {
+ position: relative;
+ display: inline-block;
+ float: right;
+ margin-right: 2em;
+ margin-top: 1em;
+
+}
+
+#login-button {
+  position: relative;
+}
+
+
+/* preset container */
 .container {
   margin: 20px auto;
   width: 800px;
   padding: 0px 20px 20px 20px;
 }
 
+/* Welcome - landing page */
+
+#welcome header {
+  color:red;
+  text-shadow: 1px 4px black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 10em;
+  text-align: center;
+}
+
+#landing-pic {
+  display: inline-block;
+  float: right;
+  border: 2px solid black;
+  border-radius: 60px;
+}
+
+#intro-body {
+  /*font-family: 'Poiret One', cursive;*/
+  font-family: 'Bangers', cursive;
+
+}
+
+#rules {
+  font-size: 0.6cm;
+
+}
+
+#welcome #title {
+  font-size: 0.6cm;
+}
+
+/* start */
+
+#button-text {
+  font-family: 'Shadows Into Light', cursive;
+  color: black;
+  position: relative;
+  margin-top: 1.5em;
+  font-size: 5em;
+  text-align: center;
+  /*top: 50%;*/
+  /*transform: translateY(-50%);*/
+}
+
+.start-container {
+  /*border: 5px solid black;*/
+  /*position: relative;*/
+  /*margin-left: 25%;*/
+  background-image: url('/images/start.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /*top: 50%;*/
+  /*transform: translateY(-50%);*/
+}
+
+#start-button {
+
+  max-height: 30em;
+  max-width: 30em;
+}
+
+/* Card game images */
+
+
+
+/*img {
+  max-height: 20em;
+  max-width: 20em;
+}
+*/

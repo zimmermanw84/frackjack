@@ -89,7 +89,7 @@ helpers do
 
     return "Player wins" if dealer_hand_value.is_a?(String)
 
-    return "Push" if dealer_hand_value ==player_hand_value
+    return "Push" if dealer_hand_value == player_hand_value
 
     dealer_hand_value > player_hand_value ? "Dealer wins" : "Player wins"
   end
@@ -100,9 +100,8 @@ helpers do
   end
 
   def dealer_action
-
     until dealer_hand_value == "Bust!"
-      break if dealer_hand_value > 17
+      break if dealer_hand_value >= 17
       deck = @game.decks.first.cards.where(player_hand: false, dealer_hand: false)
       card = deck.to_a.shuffle.pop
       card.dealer_hand = true
