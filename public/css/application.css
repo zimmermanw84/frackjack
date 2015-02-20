@@ -1,4 +1,15 @@
-body { padding-top: 70px; }
+/*body { padding-top: 70px; }*/
+
+li {
+  display: inline-block;
+  /*float: right;*/
+}
+
+img {
+  max-height: 20em;
+  max-width: 20em;
+}
+
 
 .container {
   margin: 20px auto;

@@ -5,7 +5,15 @@ end
 
 get '/:user_id/playfj' do
   @user = User.find(params[:user_id])
-  @game = @user.games.find(session[:game_id])
+
+  if session[:game_id]
+    @game = @user.games.find(session[:game_id])
+    reset_cards
+  else
+    @game = @user.games.create
+    set_session_game_tracker(@game)
+  end
+
 
   erb :playfj
 end

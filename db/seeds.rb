@@ -36,7 +36,7 @@ end
 c = Card.all
 
 c.to_a.each_with_index do |card, index|
-  card.img_url = "public/images/cards/#{img[index]}"
+  card.img_url = "/images/cards/#{img[index]}"
   card.save
 end
 

@@ -12,15 +12,27 @@
 
   <% elsif session[:game_id] && @wager_made%>
   <h1>Dealer Hand</h1>
-  <h2>Dealer shows: <%= dealer_hand[1].name %></h2>
+  <h2>Dealer shows: <%= dealer_hand[0].name %></h2>
+  <% if !@hand_over %>
+  <ul>
+    <li><img src="/images/cards/cardback.png"></li>
+    <li><img src="<%= dealer_hand[0].img_url %>"></li>
+  </ul>
+  <% else %>
+  <img src="<%= dealer_hand[0].img_url %>">
   <% dealer_hand[1..-1].each do |card| %>
-  <p><%= card.name %></p>
+  <ul>
+    <li><img src="<%= card.img_url %>"></li>
+  </ul>
+  <% end %>
   <% end %>
 
   <h1><%=@user.username%>'s Hand</h1>
   <h2>Your value: <%= player_hand_value %></h2>
   <% player_hand.each do |card| %>
-  <p><%= card.name %></p>
+  <ul>
+    <li><img src="<%= card.img_url %>"></li>
+  </ul>
   <% end %>
 
 
