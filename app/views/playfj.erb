@@ -72,12 +72,10 @@
 
 
 <% if !@hand_over && @wager_made %>
-<% if !player_hand_value.is_a?(String) || player_hand_value < 18 %>
 <section class="button-holder">
   <form action="/<%= @user.id %>/playfj/hit" method="post">
     <input type="submit" value="Hit!">
   </form>
-<% end %>
   <form action="/<%= @user.id %>/playfj/stay" method="post">
     <input type="submit" value="Stay!">
   </form>
