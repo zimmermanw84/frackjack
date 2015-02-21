@@ -116,18 +116,126 @@ nav header {
   /*transform: translateY(-50%);*/
 }
 
+.start-container a {
+  text-decoration: none;
+}
+
+.start-container a:hover {
+  text-shadow: 2px 2px white;
+}
+
 #start-button {
 
   max-height: 30em;
   max-width: 30em;
 }
 
-/* Card game images */
+/* Wager page */
 
+#wager {
+  color:red;
+  text-shadow: 1px 4px black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 7em;
+  text-align: center;
+}
 
+.wager-form {
+  text-align: center;
+}
 
-/*img {
-  max-height: 20em;
-  max-width: 20em;
+/* bubble Js Html5 slider */
+
+/* work in progress */
+/*output {
+  position: absolute;
+  background-image: linear-gradient(top, #444444, #999999);
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  font: bold 15px/30px Georgia;
+  bottom: 175%;
+  left: 0;
+  margin-left: -1%;
+}
+output:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #999999;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
 }
 */
+
+/* Card game images */
+
+/*.player-card-holder ul {
+  display: inline-block;
+}
+*/
+.player-card-holder ul li {
+  /*float: right;*/
+  list-style: none;
+  display: inline-block;
+}
+
+.dealer-card-holder ul li {
+  /*float: left;*/
+  list-style: none;
+  display: inline-block;
+}
+
+.dealer-card-holder ul {
+  display: block;
+}
+
+
+.cards img {
+  max-height: 15em;
+  max-width: 15em;
+  /*display: inline-block;*/
+  /*float: right;*/
+}
+
+/* dashboard with gameplay info */
+
+#info-header {
+  font-size: 2em;
+  text-decoration: underline;
+}
+
+.game-info {
+  background-color: rgba(0, 0, 0, 0.3);
+  /*max-width: 30%;*/
+  text-shadow: 1px 1px black;
+  float: right;
+  position: fixed;
+  display: inline-block;
+  margin-left: 60%;
+  font-family: 'Bangers', cursive;
+  color: red;
+  padding: 1em;
+  border: 3px solid black;
+
+}
+
+.button-holder {
+  position: absolute;
+  display: inline-block;
+
+  float: right;
+}
+
+.game-values {
+
+}
+

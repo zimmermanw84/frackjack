@@ -24,7 +24,7 @@ get '/:user_id/playfj/reset' do
   reset_cards
   clear_session_game
 
-  erb :playfj
+  erb :index
 end
 
 

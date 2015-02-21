@@ -1,43 +1,74 @@
 <div class="container">
   <% if session[:user_id] %>
-  <h1>Welcome to Frack Jack <%=@user.username%></h1>
 
   <% if session[:game_id] && !@hand_over && !@wager_made %>
-  <form action="/<%= @user.id %>/playfj/make_wager" method="post">
-    <p>Total Bankroll: $<%= @game.score %></p>
-    <p>No gamble no future!</p>
-    <input type="text" name="bet" placeholder="GAMBLE!" required>
-    <input type="submit" value="Bet!">
-  </form>
+  <header id="wager">Place your wager!</header>
+
+  <section class="wager-form">
+    <h2>Total Bankroll: $<%= @game.score %></h2>
+    <form action="/<%= @user.id %>/playfj/make_wager" method="post">
+      <!-- <input type="range" name="bet" min='1' max='<%= @game.score %>'> -->
+      <input type="number" name="bet" placeholder="GAMBLE!" min='1' max='<%= @game.score %>'required>
+      <input type="submit" value="Bet!">
+    </form>
+  </section>
 
   <% elsif session[:game_id] && @wager_made%>
-  <h1>Dealer Hand</h1>
-  <h2>Dealer shows: <%= dealer_hand[0].name %></h2>
-  <% if !@hand_over %>
+
+  <section class="game-info">
+    <header id="info-header">Command Center</header>
+    <h2><%=@user.username%>'s value: <%= player_hand_value %></h2>
+    <h2>Dealer shows: <%= dealer_hand[0].name %></h2>
+    <h2>Card Count: <%= card_count %></h2>
+    <h2>Bank Roll: $<%= @game.score %></h2>
+    <h2>Actions Left: <%= @game.action_counter %></h2>
+    <% if @hand_over %>
+    <h2>Dealer: <%= dealer_hand_value %></h2>
+    <% end %>
+    <% if @winner %>
+    <% settle_bets %>
+    <h2><%= @winner %>!</h2>
+    <% end %>
+  </section>
+
+
+</section>
+
+
+<% if !@hand_over %>
+
+<section class="dealer-card-holder">
   <ul>
-    <li><img src="/images/cards/cardback.png"></li>
-    <li><img src="<%= dealer_hand[0].img_url %>"></li>
+    <h1>Dealer Hand</h1>
+    <li class="cards"><img src="/images/cards/cardback.png"></li>
+    <li class="cards"><img src="<%= dealer_hand[0].img_url %>"></li>
   </ul>
-  <% else %>
-  <img src="<%= dealer_hand[0].img_url %>">
-  <% dealer_hand[1..-1].each do |card| %>
+</section>
+<% else %>
+<section class="dealer-card-holder">
   <ul>
-    <li><img src="<%= card.img_url %>"></li>
+    <h1>Dealer Hand</h1>
+    <li class="cards"><img src="<%= dealer_hand[0].img_url %>"></li>
+    <% dealer_hand[1..-1].each do |card| %>
+    <li class="cards"><img src="<%= card.img_url %>"></li>
+    <% end %>
   </ul>
   <% end %>
-  <% end %>
+</section>
 
-  <h1><%=@user.username%>'s Hand</h1>
-  <h2>Your value: <%= player_hand_value %></h2>
-  <% player_hand.each do |card| %>
+<section class="player-card-holder">
+  <h1>Player Hand</h1>
   <ul>
-    <li><img src="<%= card.img_url %>"></li>
+    <% player_hand.each do |card| %>
+    <li class="cards"><img src="<%= card.img_url %>"></li>
+    <% end %>
   </ul>
-  <% end %>
+</section>
 
 
 
-  <% if !@hand_over && @wager_made %>
+<% if !@hand_over && @wager_made %>
+<section class="button-holder">
   <form action="/<%= @user.id %>/playfj/hit" method="post">
     <input type="submit" value="Hit!">
   </form>
@@ -45,44 +76,31 @@
   <form action="/<%= @user.id %>/playfj/stay" method="post">
     <input type="submit" value="Stay!">
   </form>
+</section>
 
-  <% elsif @hand_over && !game_over?%>
-  <h2>You: <%= player_hand_value %></h2>
-  <h2>Dealer: <%= dealer_hand_value %></h2>
-  <% if @winner %>
-  <% settle_bets %>
-  <h2>The winner is! <%= @winner %></h2>
-  <% end %>
-  <form action="/<%= @user.id %>/playfj" method="post">
-    <input type="submit" value="Next Hand!">
-  </form>
+<% elsif @hand_over && !game_over?%>
 
-  <% elsif @hand_over && game_over?%>
+<form action="/<%= @user.id %>/playfj" method="post">
+  <input type="submit" value="Next Hand!">
+</form>
+
+<% elsif @hand_over && game_over?%>
+<section class="game-info">
   <h1><%= @winner %></h1>
   <h2>You: <%= player_hand_value %></h2>
   <h2>Dealer: <%= dealer_hand_value %></h2>
-  <form action="/<%= @user.id %>/playfj/reset" method="get">
-    <input type="submit" value="Restart!">
-  </form>
+</section>
+<form action="/<%= @user.id %>/playfj/reset" method="get">
+  <input type="submit" value="Restart!">
+</form>
 
-  <form action="/<%= @user.id %>/highrollers" method="get">
-    <input type="submit" value="Highrollers!">
-  </form>
+<form action="/<%= @user.id %>/highrollers" method="get">
+  <input type="submit" value="Highrollers!">
+</form>
 
-  <% end %>
+<% end %>
 
+<% end %>
 
-  <h2>Card Count: <%= card_count %></h2>
-  <h2>Bank Roll: $<%= @game.score %></h2>
-  <h2>Actions Left: <%= @game.action_counter %></h2>
-
-
-  <% else %>
-
-  <form action="/<%= @user.id %>/playfj" method="post">
-    <input type="submit" value="Deal!">
-  </form>
-  <% end %>
-
-  <% end %>
+<% end %>
 </div>
