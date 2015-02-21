@@ -21,6 +21,10 @@
     <% if session[:game_id] %>
     <header id='logged-in'><a href="/<%= @user.id %>/playfj/reset">Restart Game?</a></header>
     <% end %>
+    <% if session[:game_id] == nil %>
+      <header id='logged-in'><a href="/<%= @user.id %>/highrollers">High Rollers?</a></header>
+    <% end %>
+
 
     <%else%>
     <div class="login">

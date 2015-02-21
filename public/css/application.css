@@ -144,6 +144,17 @@ nav header {
   text-align: center;
 }
 
+#wager-br {
+  color:red;
+  text-shadow: 1px 2px black;
+  font-size: 3em;
+  font-family: 'Shadows Into Light', cursive;
+}
+
+#wager-field {
+  width: 20%;
+  margin-bottom: 2em;
+}
 /* bubble Js Html5 slider */
 
 /* work in progress */
@@ -228,14 +239,63 @@ output:after {
 
 }
 
-.button-holder {
-  position: absolute;
+.button-holder form {
   display: inline-block;
-
-  float: right;
 }
 
-.game-values {
+.button-holder input {
+  /* Will try and place chip bg img */
+  /*background-image: url("/images/chip.jpg");*/
+  /*background-repeat: no-repeat;*/
+
+  font-family: 'Bangers', cursive;
+  color: white;
+  width: 5em;
+  height: 5em;
+  border-radius: 5em;
+  border: 3px solid white;
+  background-color:black;
+  /*text-shadow: 1px 0px grey;*/
+}
+
+.button-holder input:hover {
+  background-color:red;
+}
+
+/* High Rollers */
+
+.highrollers {
+  text-align: center;
 
 }
 
+.highrollers ol {
+  border: 3px solid black;
+  list-style: none;
+  text-shadow: 1px 3px black;
+  font-family: 'Bangers', cursive;
+  color: red;
+  height: 20%;
+  font-size: 3em;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#hr-header {
+  text-align: center;
+  color:red;
+  text-shadow: 1px 4px black;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 8em;
+  padding: 0;
+}
+
+/* Register */
+
+.register {
+  border: 3px solid black;
+  text-shadow: 1px 0px black;
+  font-family: 'Bangers', cursive;
+  color: red;
+  font-size: 1em;
+  background-color: rgba(0, 0, 0, 0.3);
+}

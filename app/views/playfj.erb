@@ -5,18 +5,22 @@
   <header id="wager">Place your wager!</header>
 
   <section class="wager-form">
-    <h2>Total Bankroll: $<%= @game.score %></h2>
+
+    <h2 id="wager-br">Total Bankroll: $<%= @game.score %></h2>
+
     <form action="/<%= @user.id %>/playfj/make_wager" method="post">
       <!-- <input type="range" name="bet" min='1' max='<%= @game.score %>'> -->
-      <input type="number" name="bet" placeholder="GAMBLE!" min='1' max='<%= @game.score %>'required>
-      <input type="submit" value="Bet!">
+      <input id="wager-field" type="number" name="bet" placeholder="GAMBLE!" min='1' max='<%= @game.score %>'required>
+      <section class="button-holder">
+        <input type="submit" value="Bet!">
+      </section>
     </form>
   </section>
 
   <% elsif session[:game_id] && @wager_made%>
 
   <section class="game-info">
-    <header id="info-header">Command Center</header>
+    <header id="info-header">Information</header>
     <h2><%=@user.username%>'s value: <%= player_hand_value %></h2>
     <h2>Dealer shows: <%= dealer_hand[0].name %></h2>
     <h2>Card Count: <%= card_count %></h2>
@@ -79,10 +83,11 @@
 </section>
 
 <% elsif @hand_over && !game_over?%>
-
-<form action="/<%= @user.id %>/playfj" method="post">
-  <input type="submit" value="Next Hand!">
-</form>
+<section class="button-holder">
+  <form action="/<%= @user.id %>/playfj" method="post">
+    <input type="submit" value="Next Hand!">
+  </form>
+</section>
 
 <% elsif @hand_over && game_over?%>
 <section class="game-info">
@@ -90,13 +95,15 @@
   <h2>You: <%= player_hand_value %></h2>
   <h2>Dealer: <%= dealer_hand_value %></h2>
 </section>
-<form action="/<%= @user.id %>/playfj/reset" method="get">
-  <input type="submit" value="Restart!">
-</form>
+<section class="button-holder">
+  <form action="/<%= @user.id %>/playfj/reset" method="get">
+    <input type="submit" value="Restart!">
+  </form>
 
-<form action="/<%= @user.id %>/highrollers" method="get">
-  <input type="submit" value="Highrollers!">
-</form>
+  <form action="/<%= @user.id %>/highrollers" method="get">
+    <input type="submit" value="Highrollers!">
+  </form>
+</section>
 
 <% end %>
 
