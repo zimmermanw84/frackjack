@@ -1,4 +1,3 @@
-require 'faker'
 
 #test user
 User.create(:username => "test_user", :email => "test@gmail.com", :password => "pass")
