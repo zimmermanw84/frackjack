@@ -1,37 +1,43 @@
-$(document).ready(function() {
-
- //  var el, newPoint, newPlace, offset;
-
- // // Select all range inputs, watch for change
- // $("input[type='range']").change(function() {
-
- //   // Cache this for efficiency
- //   el = $(this);
-
- //   // Measure width of range input
- //   width = el.width();
-
- //   // Figure out placement percentage between left and right of input
- //   newPoint = (el.val() - el.attr("min")) / (el.attr("max") - el.attr("min"));
-
- //   // Janky value to get pointer to line up better
- //   offset = -1.3;
-
- //   // Prevent bubble from going beyond left or right (unsupported browsers)
- //   if (newPoint < 0) { newPlace = 0; }
- //   else if (newPoint > 1) { newPlace = width; }
- //   else { newPlace = width * newPoint + offset; offset -= newPoint; }
-
- //   // Move bubble
- //   el
- //     .next("output")
- //     .css({
- //       left: newPlace,
- //       marginLeft: offset + "%"
- //     })
- //     .text(el.val());
- // })
- // // Fake a change to position bubble at page load
- // .trigger('change');
-
+ $(document).ready(function() {
+  // $.ajax({
+  //   type: 'post',
+  //   url: '/:user_id/playfj/hit_api',
+  //   data: $(this).serialize(),
+  //   success: function(card) {
+  //     console.log(card)
+  //   }
+  // })
 });
+
+ function Card() {
+    this.name = undefined,
+    this.value = undefined,
+    this.img_url = undefined,
+    this.id = undefined,
+ }
+
+ Card.prototype.loadAttr = function() {
+   // Recieve JSON object and assign attributes to card object
+ };
+
+ function Game() {
+  this.id = undefined,
+ }
+
+
+
+
+  // sudo JS
+
+  // needs
+
+    // Objects
+    // Cards - Store attributes in DATA HTML
+
+    // Game
+    // Deck?
+
+    // routes/api
+
+    // Hit - Dynamic card retrieval
+    // Stay - Start dealer action phase
