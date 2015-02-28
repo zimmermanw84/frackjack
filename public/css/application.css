@@ -155,6 +155,25 @@ nav {
   /*position: absolute;*/
 }
 
+.play-card-container {
+  display: inline-block;
+  margin-left: 30%;
+
+}
+
+.play-card-container img {
+  max-height: 15em;
+  max-width: 15em;
+}
+
+#card-A {
+  /*opacity: 0;*/
+}
+
+#card-B {
+ /*opacity: 0;*/
+}
+
 #startbutton {
   position: absolute;
   z-index: 1;
