@@ -6,6 +6,8 @@
   <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light|Bangers' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
   <link rel="icon"
   type="image/png"
   href="/images/bj.png"/>
@@ -14,17 +16,20 @@
 </head>
 <body>
   <nav>
-    <header>Frack Jack</header>
+    <header id='dropdown-listener'>Frack Jack</header>
     <%if session[:user_id] %>
-    <header id='logged-in'>Hello! <%=@user.username%></header>
-    <header id='logged-in'><a href="/logout">Logout?</a></header>
-    <% if session[:game_id] %>
-    <header id='logged-in'><a href="/<%= @user.id %>/playfj/reset">Restart Game?</a></header>
-    <% end %>
-    <% if session[:game_id] == nil %>
-      <header id='logged-in'><a href="/<%= @user.id %>/highrollers">High Rollers?</a></header>
-    <% end %>
+    <header class='logged-in' id='game-title'>Hello! <%=@user.username%></header>
+    <div class='dropdown-container'>
+      <ul>
+        <li><header class='logged-in' id='dropdown-item'><a href="/logout">Logout?</a></header></li>
+        <% if session[:game_id] %>
+        <li><header class='logged-in' id='dropdown-item'><a href="/<%= @user.id %>/playfj/reset">Restart Game?</a></header></li>
+        <% end %>
 
+        <li><header class='logged-in' id='dropdown-item'><a href="/<%= @user.id %>/highrollers">High Rollers?</a></header></li>
+
+      </ul>
+    </div>
 
     <%else%>
     <div class="login">
@@ -42,8 +47,8 @@
 
 </body>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="/js/application.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script> -->
 
 
-</html>
+  </html>

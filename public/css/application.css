@@ -10,9 +10,10 @@ nav {
   background-color: black;
   max-height: 4em;
   font-family: 'Shadows Into Light', cursive;
+  width: 100%;
 }
 
-nav header {
+#game-title {
   color: red;
   position: relative;
   margin-top: -0.2em;
@@ -21,20 +22,60 @@ nav header {
   display: inline-block;
 }
 
-#logged-in {
+.logged-in {
   position: relative;
   margin-right: 1cm;
   float: right;
 }
 
-#logged-in a {
+.logged-in a {
   color: green;
+  text-decoration: none;
+  position: relative;
+  font-size: 2em;
+
 }
 
-#logged-in a:hover {
+.logged-in a:hover {
   color: red;
 }
 
+.dropdown-container {
+  display: none;
+  margin-top: -1em;
+  list-style: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  /*display: block;*/
+  margin-left: 0;
+  padding-bottom: 1em;
+
+}
+
+.dropdown-container ul {
+  list-style: none;
+  padding-left: 1em;
+}
+
+#dropdown-item {
+}
+
+#dropdown-listener {
+  color: red;
+  position: relative;
+  margin-top: -0.2em;
+  margin-left: 0.5em;
+  font-size: 3em;
+  display: inline-block;
+}
+
+#dropdown-listener:hover {
+  color: green;
+  position: relative;
+  margin-top: -0.2em;
+  margin-left: 0.5em;
+  font-size: 3em;
+}
 
 .login {
  position: relative;
@@ -94,10 +135,11 @@ nav header {
 #button-text {
   font-family: 'Shadows Into Light', cursive;
   color: black;
-  position: relative;
+  /*position: relative;*/
   margin-top: 1.5em;
   font-size: 5em;
   text-align: center;
+  z-index: 2;
   /*top: 50%;*/
   /*transform: translateY(-50%);*/
 }
@@ -105,30 +147,29 @@ nav header {
 .start-container {
   /*border: 5px solid black;*/
   /*position: relative;*/
-  /*margin-left: 25%;*/
-  background-image: url('/images/start.png');
-  background-repeat: no-repeat;
-  background-position: center;
+  /*background-image: url('/images/start.png');*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
   height: 100%;
   width: 100%;
+  /*position: absolute;*/
+}
+
+#startbutton {
   position: absolute;
-  /*top: 50%;*/
-  /*transform: translateY(-50%);*/
+  z-index: 1;
 }
 
 .start-container a {
   text-decoration: none;
+
 }
 
 .start-container a:hover {
   text-shadow: 2px 2px white;
 }
 
-#start-button {
 
-  max-height: 30em;
-  max-width: 30em;
-}
 
 /* Wager page */
 
