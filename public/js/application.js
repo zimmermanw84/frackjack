@@ -1,37 +1,112 @@
 $(document).ready(function() {
-
- //  var el, newPoint, newPlace, offset;
-
- // // Select all range inputs, watch for change
- // $("input[type='range']").change(function() {
-
- //   // Cache this for efficiency
- //   el = $(this);
-
- //   // Measure width of range input
- //   width = el.width();
-
- //   // Figure out placement percentage between left and right of input
- //   newPoint = (el.val() - el.attr("min")) / (el.attr("max") - el.attr("min"));
-
- //   // Janky value to get pointer to line up better
- //   offset = -1.3;
-
- //   // Prevent bubble from going beyond left or right (unsupported browsers)
- //   if (newPoint < 0) { newPlace = 0; }
- //   else if (newPoint > 1) { newPlace = width; }
- //   else { newPlace = width * newPoint + offset; offset -= newPoint; }
-
- //   // Move bubble
- //   el
- //     .next("output")
- //     .css({
- //       left: newPlace,
- //       marginLeft: offset + "%"
- //     })
- //     .text(el.val());
- // })
- // // Fake a change to position bubble at page load
- // .trigger('change');
-
+ var events = eventModule()
+ events.dropDown()
+ events.bindFadeCardAnnimation()
 });
+
+// Nav DropDown
+(function() {
+
+  var dropDown = function() {
+
+  "use strict";
+
+    var $menuContainer = $('.dropdown-container');
+    var $eventTrigger = $('#dropdown-listener');
+
+    function displayMenu() {
+      $menuContainer.css('display', 'block');
+    };
+
+    function hideMenu() {
+      $menuContainer.css('display', 'none');
+    }
+
+    function triggerDisplay() {
+      $eventTrigger.mouseenter(displayMenu);
+      $menuContainer.mouseleave(hideMenu);
+    };
+
+    triggerDisplay()
+
+  };
+
+  //  Play Screen Card Annimation On Hover
+
+  var bindFadeCardAnnimation = function() {
+
+    "use strict";
+
+    var $triggerContainer = $(".start-container");
+    var $cardContainer = $(".play-card-container")
+
+    function cardsFadeIn() {
+      $cardContainer.fadeIn("slow");
+    };
+
+    function cardsFadeOut() {
+      $cardContainer.fadeOut("slow");
+    }
+
+    function triggerCardFade() {
+      $triggerContainer.mouseenter(cardsFadeIn);
+    };
+
+    function triggerCardFadeOut() {
+      $triggerContainer.mouseleave(cardsFadeOut);
+    }
+
+    $cardContainer.fadeOut("slow")
+    triggerCardFadeOut()
+    triggerCardFade()
+
+  };
+
+  this.eventModule = function() {
+    return {
+      dropDown: dropDown,
+      bindFadeCardAnnimation: bindFadeCardAnnimation
+    }
+  }
+
+})();
+
+// OO
+
+ // function Card() {
+ //    this.name = undefined,
+ //    this.value = undefined,
+ //    this.img_url = undefined,
+ //    this.id = undefined,
+ // }
+
+ // Card.prototype.loadAttr = function() {
+ //   // Recieve JSON object and assign attributes to card object
+ // };
+
+ // function Game() {
+ //  this.id = undefined,
+ // }
+
+  // sudo JS
+
+  // needs
+
+    // Objects
+    // Cards - Store attributes in DATA HTML
+
+    // Game
+    // Deck?
+
+    // routes/api
+
+    // Hit - Dynamic card retrieval
+    // Stay - Start dealer action phase
+
+  // Nav Bar
+
+  // Modular
+  // bind events
+  // event listeners on hover
+  // toggle slide dropdown
+
