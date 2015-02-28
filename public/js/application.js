@@ -5,7 +5,7 @@ $(document).ready(function() {
 });
 
 // Nav DropDown
-(function() {
+(function($) {
 
   var dropDown = function() {
 
@@ -69,7 +69,7 @@ $(document).ready(function() {
     }
   }
 
-})();
+})($);
 
 // OO
 
