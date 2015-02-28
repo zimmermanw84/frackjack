@@ -16,7 +16,12 @@
 </head>
 <body>
   <nav>
-    <header id='dropdown-listener'>Frack Jack</header>
+    <header id='dropdown-listener'>
+      Frack Jack
+      <% if session[:user_id] %>
+      -Menu
+      <% end %>
+    </header>
     <%if session[:user_id] %>
     <header class='logged-in' id='game-title'>Hello! <%=@user.username%></header>
     <div class='dropdown-container'>
@@ -27,6 +32,8 @@
         <% end %>
 
         <li><header class='logged-in' id='dropdown-item'><a href="/<%= @user.id %>/highrollers">High Rollers?</a></header></li>
+
+        <li><header class='logged-in' id='dropdown-item'><a href="http://zimmermanw84.github.io/my_website.html">Feedback?</a></header></li>
 
       </ul>
     </div>
@@ -42,7 +49,6 @@
     </div>
     <%end%>
   </nav>
-
   <%= yield %>
 
 </body>

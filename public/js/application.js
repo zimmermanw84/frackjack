@@ -1,12 +1,12 @@
 $(document).ready(function() {
- var events = eventModule()
- events.dropDown()
- events.bindFadeCardAnnimation()
+ var nonGameEvents = nonGameEventModule()
+ nonGameEvents.dropDown()
+ nonGameEvents.bindFadeCardAnnimation()
 });
 
-// Nav DropDown
+// Non Game event module
 (function() {
-
+// Nav DropDown
   var dropDown = function() {
 
   "use strict";
@@ -56,13 +56,13 @@ $(document).ready(function() {
       $triggerContainer.mouseleave(cardsFadeOut);
     }
 
-    $cardContainer.fadeOut("slow")
+    $cardContainer.hide()
     triggerCardFadeOut()
     triggerCardFade()
 
   };
 
-  this.eventModule = function() {
+  this.nonGameEventModule = function() {
     return {
       dropDown: dropDown,
       bindFadeCardAnnimation: bindFadeCardAnnimation

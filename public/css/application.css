@@ -2,6 +2,10 @@ body  {
   background-image: url('/images/pool_table.png')
 }
 
+#menu-arrow {
+  max-height: 2em;
+  max-width: 2em;
+}
 
 /* login form - nav bar*/
 
