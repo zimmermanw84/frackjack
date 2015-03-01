@@ -1,8 +1,7 @@
 $(document).ready(function() {
- var nonGameEvents = nonGameEventModule()
- nonGameEvents.dropDown()
- nonGameEvents.bindFadeCardAnnimation()
- nonGameEvents.renderSignUpForm()
+ nonGameEventModule.dropDown()
+ nonGameEventModule.bindFadeCardAnnimation()
+ nonGameEventModule.renderSignUpForm()
 });
 
 // Non Game event module
@@ -67,6 +66,8 @@ $(document).ready(function() {
 
   var renderSignUpForm = function() {
 
+    "use strict";
+
     var $formContainer = $('#sign-up-container')
     var $formTrigger = $('#form-trigger')
     var $unRenderFormTrigger = $('#form-un-trigger')
@@ -80,7 +81,7 @@ $(document).ready(function() {
     };
 
     function unRenderForm() {
-      $unRenderFormTrigger.on('click', unRenderEventTrigger)
+      $unRenderFormTrigger.on('click', unRenderEventTrigger);
     };
 
     function renderForm() {
@@ -92,52 +93,12 @@ $(document).ready(function() {
       unRenderForm();
   };
 
-  this.nonGameEventModule = function() {
-    return {
+  var nonGameEventModule =  {
       dropDown: dropDown,
       bindFadeCardAnnimation: bindFadeCardAnnimation,
       renderSignUpForm: renderSignUpForm
-    }
   };
 
+  return nonGameEventModule
+
 })();
-
-// OO
-
- // function Card() {
- //    this.name = undefined,
- //    this.value = undefined,
- //    this.img_url = undefined,
- //    this.id = undefined,
- // }
-
- // Card.prototype.loadAttr = function() {
-   // Recieve JSON object and assign attributes to card object
- // };
-
- // function Game() {
- //  this.id = undefined,
- // }
-
-  // sudo JS
-
-  // needs
-
-    // Objects
-    // Cards - Store attributes in DATA HTML
-
-    // Game
-    // Deck?
-
-    // routes/api
-
-    // Hit - Dynamic card retrieval
-    // Stay - Start dealer action phase
-
-  // Nav Bar
-
-  // Modular
-  // bind events
-  // event listeners on hover
-  // toggle slide dropdown
-
