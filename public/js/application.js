@@ -2,6 +2,7 @@ $(document).ready(function() {
  var nonGameEvents = nonGameEventModule()
  nonGameEvents.dropDown()
  nonGameEvents.bindFadeCardAnnimation()
+ nonGameEvents.renderSignUpForm()
 });
 
 // Non Game event module
@@ -27,7 +28,7 @@ $(document).ready(function() {
       $menuContainer.mouseleave(hideMenu);
     };
 
-    triggerDisplay()
+    triggerDisplay();
 
   };
 
@@ -54,20 +55,50 @@ $(document).ready(function() {
 
     function triggerCardFadeOut() {
       $triggerContainer.mouseleave(cardsFadeOut);
-    }
+    };
 
-    $cardContainer.hide()
-    triggerCardFadeOut()
-    triggerCardFade()
+    $cardContainer.hide();
+    triggerCardFadeOut();
+    triggerCardFade();
 
+  };
+
+  // Hide and Render sign up sheet for landing page
+
+  var renderSignUpForm = function() {
+
+    var $formContainer = $('#sign-up-container')
+    var $formTrigger = $('#form-trigger')
+    var $unRenderFormTrigger = $('#form-un-trigger')
+
+    function renderEventTrigger() {
+      $formContainer.fadeIn('slow');
+    };
+
+    function unRenderEventTrigger() {
+      $formContainer.fadeOut('slow');
+    };
+
+    function unRenderForm() {
+      $unRenderFormTrigger.on('click', unRenderEventTrigger)
+    };
+
+    function renderForm() {
+      $formTrigger.on('click', renderEventTrigger);
+    };
+
+      $formContainer.hide();
+      renderForm();
+      unRenderForm();
   };
 
   this.nonGameEventModule = function() {
     return {
       dropDown: dropDown,
-      bindFadeCardAnnimation: bindFadeCardAnnimation
+      bindFadeCardAnnimation: bindFadeCardAnnimation,
+      renderSignUpForm: renderSignUpForm
     }
-  }
+  };
 
 })();
 
@@ -81,7 +112,7 @@ $(document).ready(function() {
  // }
 
  // Card.prototype.loadAttr = function() {
- //   // Recieve JSON object and assign attributes to card object
+   // Recieve JSON object and assign attributes to card object
  // };
 
  // function Game() {

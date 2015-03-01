@@ -17,6 +17,14 @@ nav {
   width: 100%;
 }
 
+#sign-up-container {
+  padding-top: 1em;
+}
+
+#form-un-trigger {
+  font-family: 'Bangers', cursive;
+}
+
 #game-title {
   color: red;
   position: relative;

@@ -2,7 +2,6 @@
 <section class="start-container">
   <a href="/<%= @user.id %>/playfj">
     <h1 id="button-text">Play<br>Frack Jack!</h1>
-    <!-- <img  id='startbutton' src="/images/start.png"> -->
   </a>
 </section>
 <section class="play-card-container">
@@ -26,9 +25,12 @@
         <li>Game ends when your bankroll is empty</li>
         <li>Game ends when action counter hits zero</li>
       </ul>
-      <h2>Please sign in or <a href="/users/new">register</a></h2>
+      <h2>Please sign in or <a id="form-trigger" href="javascript:void(0)">register</a></h2>
       <h3>This is not a gambling site!</h3>
     </article>
-    <% end %>
   </section>
+  <section id="sign-up-container">
+    <%= erb :signup %>
+  </section>
+    <% end %>
 </div>
