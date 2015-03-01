@@ -1,7 +1,8 @@
 $(document).ready(function() {
- nonGameEventModule.dropDown()
- nonGameEventModule.bindFadeCardAnnimation()
- nonGameEventModule.renderSignUpForm()
+ var nonGameEvents = nonGameEventModule()
+ nonGameEvents.dropDown()
+ nonGameEvents.bindFadeCardAnnimation()
+ nonGameEvents.renderSignUpForm()
 });
 
 // Non Game event module
@@ -93,12 +94,12 @@ $(document).ready(function() {
       unRenderForm();
   };
 
-  var nonGameEventModule =  {
+  this.nonGameEventModule = function() {
+    return {
       dropDown: dropDown,
       bindFadeCardAnnimation: bindFadeCardAnnimation,
       renderSignUpForm: renderSignUpForm
-  };
-
-  return nonGameEventModule
+      }
+    };
 
 })();
