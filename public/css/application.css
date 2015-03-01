@@ -160,9 +160,8 @@ nav {
 }
 
 .play-card-container {
-  display: inline-block;
-  margin-left: 30%;
-
+  /*display: inline-block;*/
+  text-align: center;
 }
 
 .play-card-container img {
