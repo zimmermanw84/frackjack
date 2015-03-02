@@ -1,14 +1,14 @@
 
 # Add card using JSON object
-put '/:user_id/playfj/hit_api' do
-  content_type :json
-
-  @user = User.find(session[:user_id])
-  @game = @user.games.find(session[:game_id])
-
-  deck = @game.decks.first.cards.where(player_hand: false, dealer_hand: false)
+put '/api/playfj/hit' do
+  deck = Deck.first.cards.where(player_hand: false, dealer_hand: false)
   card = deck.sample
-
+  content_type :json
   { id: card.id, name: card.name, value: card.value, img_url: card.img_url }.to_json
+end
 
+put '/api/playfj/gameinfo' do
+  game = Game.find(session[:game_id])
+  content_type :json
+  { game_id: game.id, score: game.score, actions: game.action_counter }.to_json
 end

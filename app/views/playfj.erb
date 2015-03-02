@@ -73,10 +73,10 @@
 
 <% if !@hand_over && @wager_made %>
 <section class="button-holder">
-  <form action="/<%= @user.id %>/playfj/hit" method="post">
+  <form id="hit-btn" action="/<%= @user.id %>/playfj/hit" method="post">
     <input type="submit" value="Hit!">
   </form>
-  <form action="/<%= @user.id %>/playfj/stay" method="post">
+  <form id="stay-btn" action="/<%= @user.id %>/playfj/stay" method="post">
     <input type="submit" value="Stay!">
   </form>
 </section>
