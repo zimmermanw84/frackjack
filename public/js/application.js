@@ -10,29 +10,29 @@ $(document).ready(function() {
 // Non Game event module
 (function() {
 // Nav DropDown
-var dropDown = function() {
+  var dropDown = function() {
 
-  "use strict";
+    "use strict";
 
-  var $menuContainer = $('.dropdown-container');
-  var $eventTrigger = $('#dropdown-listener');
+    var $menuContainer = $('.dropdown-container');
+    var $eventTrigger = $('#dropdown-listener');
 
-  function displayMenu() {
-    $menuContainer.css('display', 'block');
+    function displayMenu() {
+      $menuContainer.css('display', 'block');
+    };
+
+    function hideMenu() {
+      $menuContainer.css('display', 'none');
+    };
+
+    function triggerDisplay() {
+      $eventTrigger.mouseenter(displayMenu);
+      $menuContainer.mouseleave(hideMenu);
+    };
+
+    triggerDisplay();
+
   };
-
-  function hideMenu() {
-    $menuContainer.css('display', 'none');
-  };
-
-  function triggerDisplay() {
-    $eventTrigger.mouseenter(displayMenu);
-    $menuContainer.mouseleave(hideMenu);
-  };
-
-  triggerDisplay();
-
-};
 
   //  Play Screen Card Annimation On Hover
 
@@ -94,6 +94,7 @@ var dropDown = function() {
     $formContainer.hide();
     renderForm();
     unRenderForm();
+
   };
 
   this.nonGameEventModule = function() {
@@ -121,8 +122,9 @@ var dropDown = function() {
         }
       })
     };
+    // Work on next. Add player hand info to JSON
+    ajaxGameInfoCall();
 
-    ajaxGameInfoCall()
   };
 
   var getNewCard = function() {
@@ -151,8 +153,8 @@ var dropDown = function() {
       });
     };
 
+    renderCardTemplate();
 
-    renderCardTemplate()
   };
 
 
