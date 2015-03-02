@@ -1,8 +1,10 @@
 $(document).ready(function() {
  var nonGameEvents = nonGameEventModule()
+ var activeGame = activeGameModule()
  nonGameEvents.dropDown()
  nonGameEvents.bindFadeCardAnnimation()
  nonGameEvents.renderSignUpForm()
+ activeGame.getNewCard()
 });
 
 // Non Game event module
@@ -21,7 +23,7 @@ var dropDown = function() {
 
   function hideMenu() {
     $menuContainer.css('display', 'none');
-  }
+  };
 
   function triggerDisplay() {
     $eventTrigger.mouseenter(displayMenu);
@@ -47,7 +49,7 @@ var dropDown = function() {
 
     function cardsFadeOut() {
       $cardContainer.fadeOut("slow");
-    }
+    };
 
     function triggerCardFade() {
       $triggerContainer.mouseenter(cardsFadeIn);
@@ -104,7 +106,7 @@ var dropDown = function() {
 
 })();
 
-// Game/Card Model Module
+// God Game Module >.< sigh lol
 
 (function() {
 
@@ -125,21 +127,36 @@ var dropDown = function() {
 
   var getNewCard = function() {
 
-    function ajaxHitCall() {
+    var $newCardLocation = $('#player-card-container');
+    var $hitEventTarget = $('#hit-btn');
+
+    function getCardAjax(callback) {
       $.ajax({
         type: 'put',
         url: '/api/playfj/hit',
         success: function(response) {
-          return response;
+          callback(response);
         }
       })
     };
 
-    ajaxHitCall()
+    function appendCard(card) {
+      $newCardLocation.append("<li class='cards'><img src='"+card.img_url+"'></li>");
+    };
+
+    function renderCardTemplate() {
+      $hitEventTarget.on('click', function(event) {
+        event.preventDefault();
+        getCardAjax(appendCard);
+      });
+    };
+
+
+    renderCardTemplate()
   };
 
 
-  this.cardModelModule = function() {
+  this.activeGameModule = function() {
     return {
       getNewCard: getNewCard,
       updateGameInfo: updateGameInfo
@@ -148,18 +165,3 @@ var dropDown = function() {
 
 })();
 
-// Game/Card Controller Module
-
-(function() {
-
-
-
-})();
-
-// Game/Card View Module
-
-(function() {
-
-
-
-})();

@@ -62,7 +62,7 @@
 
 <section class="player-card-holder">
   <h1>Player Hand</h1>
-  <ul>
+  <ul id="player-card-container">
     <% player_hand.each do |card| %>
     <li class="cards"><img src="<%= card.img_url %>"></li>
     <% end %>
