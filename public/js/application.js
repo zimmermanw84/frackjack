@@ -2,10 +2,7 @@ $(document).ready(function() {
  var nonGameEvents = nonGameEventModule()
  var activeGame = activeGameModule()
  nonGameEvents.inititialize()
- // nonGameEvents.dropDown()
- // nonGameEvents.bindFadeCardAnnimation()
- // nonGameEvents.renderSignUpForm()
- activeGame.getNewCard()
+ activeGame.inititialize()
 });
 
 // Non Game event module
@@ -13,33 +10,31 @@ $(document).ready(function() {
 // Nav DropDown
   "use strict";
 
-var dropDown = function() {
+  var dropDown = function() {
 
-  var $menuContainer = $('.dropdown-container');
-  var $eventTrigger = $('#dropdown-listener');
+    var $menuContainer = $('.dropdown-container');
+    var $eventTrigger = $('#dropdown-listener');
 
-  function displayMenu() {
-    $menuContainer.css('display', 'block');
+    function displayMenu() {
+      $menuContainer.css('display', 'block');
+    };
+
+    function hideMenu() {
+      $menuContainer.css('display', 'none');
+    };
+
+    function triggerDisplay() {
+      $eventTrigger.mouseenter(displayMenu);
+      $menuContainer.mouseleave(hideMenu);
+    };
+
+    triggerDisplay();
+
   };
-
-  function hideMenu() {
-    $menuContainer.css('display', 'none');
-  };
-
-  function triggerDisplay() {
-    $eventTrigger.mouseenter(displayMenu);
-    $menuContainer.mouseleave(hideMenu);
-  };
-
-  triggerDisplay();
-
-};
 
   //  Play Screen Card Annimation On Hover
 
   var bindFadeCardAnnimation = function() {
-
-    // "use strict";
 
     var $triggerContainer = $(".start-container");
     var $cardContainer = $(".play-card-container")
@@ -69,8 +64,6 @@ var dropDown = function() {
   // Hide and Render sign up sheet for landing page
 
   var renderSignUpForm = function() {
-
-    // "use strict";
 
     var $formContainer = $('#sign-up-container');
     var $formTrigger = $('#form-trigger');
@@ -102,13 +95,10 @@ var dropDown = function() {
     dropDown();
     bindFadeCardAnnimation();
     renderSignUpForm();
-  }
+  };
 
-  Window.nonGameEventModule = function() {
+  window.nonGameEventModule = function() {
     return {
-      // dropDown: dropDown,
-      // bindFadeCardAnnimation: bindFadeCardAnnimation,
-      // renderSignUpForm: renderSignUpForm
       inititialize: inititialize,
     }
   };
@@ -165,11 +155,14 @@ var dropDown = function() {
 
   };
 
+  var inititialize = function() {
+    getNewCard();
+    updateGameInfo();
+  };
 
-  this.activeGameModule = function() {
+  window.activeGameModule = function() {
     return {
-      getNewCard: getNewCard,
-      updateGameInfo: updateGameInfo
+      inititialize: inititialize,
     }
   };
 
