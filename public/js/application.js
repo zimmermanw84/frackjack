@@ -109,6 +109,8 @@ $(document).ready(function() {
 
 (function() {
 
+  "use strict";
+
   var updateGameInfo = function() {
 
     function ajaxGameInfoCall() {
