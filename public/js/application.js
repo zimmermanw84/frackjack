@@ -112,7 +112,7 @@ $(document).ready(function() {
   "use strict";
 
   var updateGameInfo = function() {
-
+    // WIP
     function ajaxGameInfoCall() {
       $.ajax({
         type: 'put',
