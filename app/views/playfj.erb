@@ -21,7 +21,6 @@
 
   <section class="game-info">
     <header id="info-header">Information</header>
-    <h2><%=@user.username%>'s value:<span id='p-hand-value'> <%= player_hand_value %></span></h2>
     <h2>Dealer shows: <%= dealer_hand[0].name %></h2>
     <h2>Card Count: <span id='card-count'><%= card_count %></span></h2>
     <h2>Bank Roll: $<%= @game.score %></h2>
@@ -29,9 +28,10 @@
     <% if @hand_over %>
     <h2>Dealer: <%= dealer_hand_value %></h2>
     <% end %>
+    <h2><%=@user.username%>'s value:<span id='p-hand-value'> <%= player_hand_value %></span></h2>
     <% if @winner %>
     <% settle_bets %>
-    <h2><%= @winner %>!</h2>
+    <h2 id='winner-display'><%= @winner %>!</h2>
     <% end %>
   </section>
 
@@ -82,7 +82,7 @@
 </section>
 
 <% elsif @hand_over && !game_over?%>
-<section class="button-holder">
+<section class="button-holder" id="next-hand">
   <form action="/<%= @user.id %>/playfj" method="post">
     <input type="submit" value="Next Hand!">
   </form>

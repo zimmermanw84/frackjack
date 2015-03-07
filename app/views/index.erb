@@ -1,4 +1,4 @@
-<% if session[:user_id] %>
+ <% if session[:user_id] %>
 <section class="start-container">
   <a href="/<%= @user.id %>/playfj">
     <h1 id="button-text">Play<br>Frack Jack!</h1>
@@ -12,7 +12,7 @@
 <% else %>
 <div class="container">
   <section id='welcome'>
-    <header>Frack Jack</header>
+    <header id='frack'>Frack Jack</header>
     <img id="landing-pic" src="/images/icon_340.png">
     <article id="intro-body">
       <p id="title">
