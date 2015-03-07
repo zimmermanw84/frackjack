@@ -112,18 +112,43 @@ $(document).ready(function() {
   "use strict";
 
   var updateGameInfo = function() {
-    // WIP
-    function ajaxGameInfoCall() {
+
+    var $hitEventTarget = $('#hit-btn');
+    var $playerHandNode = $('#p-hand-value');
+    var $currentCardCount = $('#card-count');
+    var $currentActions = $('#action-count');
+
+
+    function ajaxGameInfoCall(callback) {
       $.ajax({
         type: 'put',
         url: '/api/playfj/gameinfo',
         success: function(response) {
-          return response;
+          callback(response);
         }
       })
     };
-    // Work on next. Add player hand info to JSON
-    ajaxGameInfoCall();
+
+    function changeGameInfo(gameInfo) {
+      $playerHandNode.text('' + gameInfo.updated_player_hand);
+      $currentActions.text('' + gameInfo.actions_left);
+      $currentCardCount.text('' + gameInfo.card_count);
+
+      // Hide Hit Button id current hand value is over 21 or Bust!
+      if (typeof(gameInfo.updated_player_hand) === 'string' || gameInfo.updated_player_hand > 16){
+        $hitEventTarget.fadeOut('slow');
+      };
+
+    };
+
+    function bindGameInfoCall() {
+      $hitEventTarget.on('click', function(event) {
+        event.preventDefault()
+        ajaxGameInfoCall(changeGameInfo);
+      })
+    };
+
+    bindGameInfoCall();
 
   };
 
@@ -152,6 +177,7 @@ $(document).ready(function() {
         getCardAjax(appendCard);
       });
     };
+
 
     renderCardTemplate();
 
