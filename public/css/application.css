@@ -61,6 +61,7 @@ nav {
   /*display: block;*/
   margin-left: 0;
   padding-bottom: 1em;
+  z-index: 9999;
 
 }
 
