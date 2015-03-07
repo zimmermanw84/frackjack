@@ -187,14 +187,7 @@ $(document).ready(function() {
 
     };
 
-    function bindGameInfoCall() {
-      $hitEventTarget.on('click', function(event) {
-        event.preventDefault()
-        ajaxGameInfoCall(changeGameInfo);
-      })
-    };
-
-    bindGameInfoCall();
+    ajaxGameInfoCall(changeGameInfo);
 
   };
 
@@ -210,6 +203,8 @@ $(document).ready(function() {
         url: '/api/playfj/hit',
         success: function(response) {
           callback(response);
+          // Fire second Ajax request after first on gets back
+          updateGameInfo();
         }
       })
     };
@@ -236,7 +231,7 @@ $(document).ready(function() {
 
   var inititialize = function() {
     getNewCard();
-    updateGameInfo();
+    // updateGameInfo();
   };
 
   window.activeGameModule = function() {
