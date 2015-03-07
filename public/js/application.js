@@ -15,6 +15,7 @@ $(document).ready(function() {
     var $frackHeader = $('#frack');
     var $landingImg = $('#landing-pic');
     var $rules = $('#intro-body');
+    var $highRoller = $('#hr-header')
 
     function bindTimeoutEvents() {
 
@@ -32,6 +33,11 @@ $(document).ready(function() {
         $rules.show();
         $rules.addClass('animated bounceInLeft');
       } ,2000);
+
+      // Sneak in a HighRollers Page Timeout Annimation>.>
+      setTimeout(function() {
+        $highRoller.addClass('animated flip');
+      } ,1000);
 
     };
 
