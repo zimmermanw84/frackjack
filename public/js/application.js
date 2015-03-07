@@ -77,10 +77,12 @@ $(document).ready(function() {
 
     function cardsFadeIn() {
       $cardContainer.show();
+      $cardContainer.removeClass("animated lightSpeedOut");
       $cardContainer.addClass("animated lightSpeedIn");
     };
 
     function cardsFadeOut() {
+      $cardContainer.removeClass("animated lightSpeedIn");
       $cardContainer.addClass("animated lightSpeedOut");
     };
 
