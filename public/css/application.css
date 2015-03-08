@@ -361,13 +361,36 @@ output:after {
   padding: 0;
 }
 
+#sports-lines {
+  width: 20%;
+  position: fixed;
+  padding-top: 1em;
+}
+
+#hide{
+  text-align: center;
+  /*color: black;*/
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 2em;
+}
+
+#hide a {
+  text-decoration: none;
+  color: black;
+}
+
+#hide a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
 /* Register */
 
 .register {
   border: 3px solid black;
-  text-shadow: 1px 0px black;
+  /*text-shadow: 1px 0px black;*/
   font-family: 'Bangers', cursive;
-  color: red;
+  color: black;
   font-size: 1em;
   background-color: rgba(0, 0, 0, 0.3);
 }

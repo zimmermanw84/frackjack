@@ -34,9 +34,12 @@
 
         <li><header class='logged-in' id='dropdown-item'><a href="/<%= @user.id %>/highrollers">High Rollers?</a></header></li>
 
+        <li><header class='logged-in' id='line-trigger'><a href="javascript:void(0)">Toggle Sports Lines?</a></header></li>
+
         <li><header class='logged-in' id='dropdown-item'><a href="http://zimmermanw84.github.io/my_website.html">Feedback?</a></header></li>
 
       </ul>
+
     </div>
 
     <%else%>
@@ -50,8 +53,12 @@
     </div>
     <%end%>
   </nav>
-  <%= yield %>
+  <section id='sports-lines'>
+    <header id='hide'><a href="javascript:void(0)">Hide?</a></header>
+    <%= erb :bettinglines %>
+  </section>
 
+  <%= yield %>
 </body>
 
 <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
