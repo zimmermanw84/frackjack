@@ -31,12 +31,14 @@ post '/sessions' do
   user = User.where(:email => params[:email]).first
   if user.nil?
     #incorrect email
+    @error = "Invalid login! Try again!"
     erb :index
   elsif user.password == params[:password]
     session[:user_id] = user.id
     redirect '/'
   else
     #incorrect password
+    @error = "Invalid login! Try again!"
     erb :index
   end
 end
