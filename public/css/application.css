@@ -373,6 +373,7 @@ output:after {
   width: 20%;
   position: fixed;
   padding-top: 1em;
+  z-index: 9998;
 }
 
 #hide{
