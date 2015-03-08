@@ -15,7 +15,8 @@ gem 'activesupport', '~>4.1'
 gem 'activerecord', '~>4.1'
 
 gem 'rake'
-
+gem 'oauth', '~> 0.4.7'
+gem 'twitter', '~> 4.5.0'
 gem 'bcrypt-ruby'
 
 gem 'shotgun'
