@@ -15,7 +15,7 @@ $(document).ready(function() {
     var $frackHeader = $('#frack');
     var $landingImg = $('#landing-pic');
     var $rules = $('#intro-body');
-    var $highRoller = $('#hr-header')
+    var $highRoller = $('#hr-header');
 
     function bindTimeoutEvents() {
 
@@ -52,6 +52,9 @@ $(document).ready(function() {
 
     var $menuContainer = $('.dropdown-container');
     var $eventTrigger = $('#dropdown-listener');
+    var $sportLines = $('#sports-lines');
+    var $lineTrigger = $('#line-trigger');
+    var $hideSports = $('#hide');
 
     function displayMenu() {
       $menuContainer.show()
@@ -69,8 +72,33 @@ $(document).ready(function() {
       $menuContainer.mouseleave(hideMenu);
     };
 
-    $menuContainer.hide()
+    // Sports Section
+    function toggleSportsDisplay() {
+      $sportLines.show()
+      $sportLines.removeClass('animated flipOutX');
+      $sportLines.addClass('animated flipInX');
+    };
+
+    function triggerSportsDisplay() {
+      $lineTrigger.on('click', toggleSportsDisplay);
+    };
+
+    function toggleSportsHide() {
+      $sportLines.removeClass('animated flipInX');
+      $sportLines.addClass('animated flipOutX');
+    };
+
+
+    function triggerSportsHide() {
+      $hideSports.on('click', toggleSportsHide);
+    };
+
+
+    $sportLines.hide();
+    $menuContainer.hide();
+    triggerSportsHide();
     triggerDisplay();
+    triggerSportsDisplay();
 
   };
 
